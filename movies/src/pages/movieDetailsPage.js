@@ -1,11 +1,15 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
 import MovieDetails from "../components/movieDetails/";
+import ReccommendedMovies from "../components/reccommendedMovies/";
 import PageTemplate from "../components/templateMoviePage";
 import { getMovie } from '../api/tmdb-api'
+import { getReccommended, getMovieImages } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 //import useMovie from "../hooks/useMovie";
+
+
 
 const MoviePage = (props) => {
   const { id } = useParams();
@@ -27,7 +31,9 @@ const MoviePage = (props) => {
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
+            <MovieDetails movie={movie}
+      />
+     
           </PageTemplate>
         </>
       ) : (
@@ -38,3 +44,4 @@ const MoviePage = (props) => {
 };
 
 export default MoviePage;
+    

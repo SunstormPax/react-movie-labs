@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Header from "../headerMovieList";
-import FilterCard from "../filterMoviesCard";
-import MovieList from "../movieList";
+
+import ReccommendedList from "../reccommendedList";
 import Grid from "@mui/material/Grid";
 import Pagination from "@mui/material/Pagination";
 
-function MovieListPageTemplate({ movies, title, action }) {
+function ReccommendedListPageTemplate({ reccommended, title, action }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [page, setPage] = useState(1); // Current page of pagination
@@ -46,7 +46,7 @@ function MovieListPageTemplate({ movies, title, action }) {
             genreFilter={genreFilter}
           />
         </Grid>
-        <MovieList action={action} movies={displayedMovies.slice(startIndex, endIndex)}></MovieList> {/* Sliced the displayed movies based on pagination */}
+        <ReccommendedList action={action} movies={displayedReccommended.slice(startIndex, endIndex)}></ReccommendedList> {/* Sliced the displayed movies based on pagination */}
         <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
           <Pagination count={Math.ceil(displayedMovies.length / itemsPerPage)} page={page} onChange={handlePageChange} /> {/* Pagination component */}
         </Grid>
@@ -54,4 +54,4 @@ function MovieListPageTemplate({ movies, title, action }) {
     </Grid>
   );
 }
-export default MovieListPageTemplate;
+export default ReccommendedListPageTemplate;

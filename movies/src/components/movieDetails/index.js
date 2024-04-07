@@ -8,7 +8,9 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
+import MovieReviews from "../movieReviews";
+
+
 
 
 const root = {
@@ -47,6 +49,8 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           </li>
         ))}
       </Paper>
+
+     
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
@@ -58,6 +62,9 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           label={`${movie.vote_average} (${movie.vote_count}`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+<Chip label={`Keywords: ${movie.keywords}`} />
+
+
       </Paper>
       <Paper 
         component="ul" 
@@ -70,8 +77,11 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           <li key={g.name}>
             <Chip label={g.name} sx={{...chip}} />
           </li>
+
         ))}
+     
       </Paper>
+
       <Fab
         color="secondary"
         variant="extended"
@@ -85,10 +95,12 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         <NavigationIcon />
         Reviews
       </Fab>
+
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
       </>
+
   );
 };
 export default MovieDetails ;

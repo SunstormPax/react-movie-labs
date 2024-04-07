@@ -17,25 +17,25 @@ import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import RecommendIcon from '@mui/icons-material/Recommend';
 
-export default function MovieCard({movie, action}) {
-  const { favorites, addToFavorites } = useContext(MoviesContext);
+export default function ReccommendedCard({reccommended, action}) {
+  const { favorites, addToFavorites } = useContext(ReccommendedContext);
 
-  if (favorites.find((id) => id === movie.id)) {
-    movie.favorite = true;
+  if (favorites.find((id) => id === reccommended.id)) {
+    reccommended.favorite = true;
   } else {
-    movie.favorite = false
+    reccommended.favorite = false
   }
 
   const handleAddToFavorite = (e) => {
     e.preventDefault();
-    addToFavorites(movie);
+    addToFavorites(reccommended);
   };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
             <CardHeader
         avatar={
-          movie.favorite ? (
+          reccommended.favorite ? (
             <Avatar sx={{ backgroundColor: 'red' }}>
               <FavoriteIcon />
             </Avatar>
@@ -43,15 +43,15 @@ export default function MovieCard({movie, action}) {
         }
         title={
           <Typography variant="h5" component="p">
-            {movie.title}{" "}
+            {reccommended.title}{" "}
           </Typography>
         }
       />
       <CardMedia
         sx={{ height: 500 }}
         image={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+          reccommended.poster_path
+            ? `https://image.tmdb.org/t/p/w500/${reccommended.poster_path}`
             : img
         }
       />
@@ -60,19 +60,19 @@ export default function MovieCard({movie, action}) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {reccommended.release_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <StarRateIcon fontSize="small" />
-              {"  "} {movie.vote_average}{" "}
+              {"  "} {reccommended.vote_average}{" "}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        {action(movie)}
+        {action(reccommended)}
        
       <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
@@ -80,7 +80,7 @@ export default function MovieCard({movie, action}) {
           </Button>
 </Link>
 
- <Link to={`/reccommended/${movie.id}`}>
+ <Link to={`/reccommended/${reccommended.id}`}>
           <RecommendIcon>
             More Info ...
           </RecommendIcon>
